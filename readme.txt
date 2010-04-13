@@ -1,16 +1,12 @@
 === Plugin Name ===
-Contributors:
+Contributors: Alasdair Boyd
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBZ7EUWDDRS38&lc=AU&item_name=DynaPoll&item_number=DynaPoll_WP&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: poll, survey
 Requires at least: 2.9
 Tested up to: 2.9
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 The DynaPoll plugin enables you to embed your DynaPoll polls into your WordPress site. Create a poll at http://www.dynapoll.net. 
-
-Full instructions found at: http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
-
-Video demo: http://www.youtube.com/watch?v=DVk_ppZ9b_k
 
 == Description ==
 
@@ -22,6 +18,7 @@ It's extremely easy to install and even easier to use this plugin.You can check 
 
 http://www.youtube.com/watch?v=DVk_ppZ9b_k
 
+Full instructions found at: http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
 == Installation ==
 
 For full detailed instructions and the usage demonstration video please check http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
@@ -36,17 +33,17 @@ The URL above is for the What is your favourite colour? poll and the poll code f
 
 There are two ways you can embed a DynaPoll into your Wordpress site:
 
-1. In your Blog Posts or Page content put the following tag where you would like the poll to appear:
+In your Blog Posts or Page content put the following tag where you would like the poll to appear:
 
-[dynapoll: 1gQXDBnMx3CDppWbaLDH4]
+`[dynapoll: 1gQXDBnMx3CDppWbaLDH4]`
 
 OR
 
-2. Anywhere in the WordPress Template put the following code:
+Anywhere in the WordPress Template put the following code:
 
-`<?php
-$poll_code = '1gQXDBnMx3CDppWbaLDH4';
-echo dynapoll_get_poll($poll_code);
+`<?php 
+     $poll_code = '1gQXDBnMx3CDppWbaLDH4'; 
+     echo dynapoll_get_poll($poll_code); 
 ?>`
 
 == Frequently Asked Questions ==
@@ -62,3 +59,10 @@ No screenshots but check out the demo video here: http://www.youtube.com/watch?v
 = 1.0 =
 * Initial release
 
+= 1.0.1 =
+* Fixed a minor problem with images referenced by css not displaying. Cosmetic only
+
+== Upgrade Notice ==
+
+= 1.0.1 =
+* If you want it to look slightly prettier (haha) then upgrade :)

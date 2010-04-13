@@ -27,7 +27,7 @@ div.survey_choices {
 
 div#in_choices {
 	padding: 4px;
-	background-image: url('img/in_answers_bg.gif');
+	background-image: url('in_answers_bg.gif');
 	background-repeat: repeat-y;
 	border: 1px dashed #8fcb67;
 	border-left: 15px solid #8fcb67;
@@ -37,7 +37,7 @@ div#in_choices {
 div#out_choices {
 	margin-top: 10px;
 	padding: 4px;
-	background-image: url('img/out_answers_bg.gif');
+	background-image: url('out_answers_bg.gif');
 	background-repeat: repeat-y;
 	border: 1px dashed #ff8890;
 	border-left: 15px solid #ff8890;
@@ -126,7 +126,7 @@ input.text, textarea.textarea {
 	border-left:1px solid #c3c3c3;
 	border-right:1px solid #c3c3c3;
 	border-bottom:1px solid #ddd;
-	background:#fff url("img/fieldbg.gif") repeat-x top;
+	background:#fff url("fieldbg.gif") repeat-x top;
 }
 
 
