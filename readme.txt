@@ -14,11 +14,11 @@ Video demo: http://www.youtube.com/watch?v=DVk_ppZ9b_k
 
 == Description ==
 
-If you run a WordPress site and you would like to host one of your polls or, indeed, any poll from DynaPoll on your site then this is the plugin for you!
+If you would like to host one of your polls or, indeed, any poll from DynaPoll on your site then this is the plugin for you!
 
 You can setup a DynaPoll poll on http://www.dynapoll.net
 
-It's extremely easy to install and even easier to use this plugin. All the information you require can be found below. You can also check out the following video which demonstrates the use of the plugin.
+It's extremely easy to install and even easier to use this plugin.You can check out the following video which demonstrates the use of the plugin.
 
 http://www.youtube.com/watch?v=DVk_ppZ9b_k
 
