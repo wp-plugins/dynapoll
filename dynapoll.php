@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: DynaPoll
-Plugin URI: http://www.dynapoll.net/dynapoll_wordpress_plugin
+Plugin URI: http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
 Description: Grab a DynaPoll and embed it into your WP site
 Version: 1.0
 Author: Alasdair Boyd
@@ -30,28 +30,28 @@ Author URI: http://www.dynapoll.net
 DYNAPOLL USAGE
 USAGE 1:
 Paste the following into any part of your site and it will output the poll as per the poll code.
-<?php 
+<?php
 	$poll_code = 'rnACCLw2ccTwyOG9e2htY';
 	echo dynapoll_get_poll($poll_code);
 ?>
- 
+
 USAGE 2:
 Paste the following into your content (ie; within a blog post or page content) and it will be replaced with
 the poll which corresponds to the poll code.
 
 [dynapoll: rnACCLw2ccTwyOG9e2htY]
- 
+
  */
 
 function dynapoll_writeCSS() {
 	$x = WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__));
-	echo ( '<link rel="stylesheet" type="text/css" href="'. $x . 'dynapoll_css.css">' . "\r\n" ); 
+	echo ( '<link rel="stylesheet" type="text/css" href="'. $x . 'dynapoll_css.css">' . "\r\n" );
 }
 
 function dynapoll_writeJS() {
 	$x = WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__));
 	$js_inc = '<script type="text/javascript" src="'. $x . 'dynapoll_js.js"></script>' . "\r\n";
-	$js_inc .= '<script type="text/javascript">var base_url = "' . $x . '";</script>'; 
+	$js_inc .= '<script type="text/javascript">var base_url = "' . $x . '";</script>';
 	echo $js_inc;
 }
 
@@ -64,11 +64,11 @@ require_once(dirname(__FILE__)."/dynapoll_rpc.php");
 function dynapoll_get_poll($poll_code)
 {
 	$user_ip = $_SERVER["REMOTE_ADDR"];
-	
+
 	$f=new xmlrpcmsg('get_poll', array(new xmlrpcval($poll_code, "string"),
 									new xmlrpcval($user_ip, "string")));
 	$returned_html = send_rpc_request($f);
-	
+
 	switch(trim($returned_html))
 					{
 					case '900':
@@ -93,8 +93,8 @@ function dynapoll_get_poll($poll_code)
 					  break;
 					default:
 					  /* do nothing - therefore load content */
-					}	
-	
+					}
+
 	return $returned_html;
 }
 
