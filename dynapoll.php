@@ -3,7 +3,7 @@
 Plugin Name: DynaPoll
 Plugin URI: http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
 Description: Grab a DynaPoll and embed it into your WP site
-Version: 1.0
+Version: 1.0.1
 Author: Alasdair Boyd
 Author URI: http://www.dynapoll.net
 */
