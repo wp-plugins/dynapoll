@@ -3,7 +3,8 @@
 Plugin Name: DynaPoll
 Plugin URI: http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
 Description: Grab a DynaPoll and embed it into your WP site
-Version: 1.0.1
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBZ7EUWDDRS38&lc=AU&item_name=DynaPoll&item_number=DynaPoll_WP&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
+Version: 1.0.2
 Author: Alasdair Boyd
 Author URI: http://www.dynapoll.net
 */
