@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBZ7E
 Tags: poll, survey
 Requires at least: 2.9
 Tested up to: 2.9
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 The DynaPoll plugin enables you to embed your DynaPoll polls into your WordPress site. Create a poll at http://www.dynapoll.net. 
 
@@ -31,19 +31,23 @@ http://www.dynapoll.net/survey/vote/1gQXDBnMx3CDppWbaLDH4
 
 The URL above is for the What is your favourite colour? poll and the poll code for this is: 1gQXDBnMx3CDppWbaLDH4
 
+You will also need to know the theme you wish to use. If you are not sure just try them all - there are currently only 2. You can choose between "light" and "dark". The shade refers to the 
+shade of the background of the site you are embedding the poll in. So for example if you have a really dark site with a dark background you will choose theme "dark".
+
 There are several ways you can embed a DynaPoll Poll into your Wordpress site:
 
 In your Blog Posts or Page content put the following tag where you would like the poll to appear:
 
-`[dynapoll: 1gQXDBnMx3CDppWbaLDH4]`
+`[dynapoll: 1gQXDBnMx3CDppWbaLDH4, dark]`
 
 OR
 
 Anywhere in the WordPress Template put the following code:
 
 `<?php 
-     $poll_code = '1gQXDBnMx3CDppWbaLDH4'; 
-     echo dynapoll_get_poll($poll_code); 
+     $poll_code = '1gQXDBnMx3CDppWbaLDH4';
+     $theme = 'dark';
+     echo dynapoll_get_poll($poll_code, $theme); 
 ?>`
 
 OR
@@ -53,7 +57,8 @@ your sidebar and paste the following code into the content of the Widget:
 
 `<?php
       $poll_code = '1gQXDBnMx3CDppWbaLDH4';
-      echo dynapoll_get_poll($poll_code);
+      $theme = 'light';
+      echo dynapoll_get_poll($poll_code, $theme);
 ?>`
 
 
@@ -73,7 +78,27 @@ No screenshots but check out the demo video here: http://www.youtube.com/watch?v
 = 1.0.1 =
 * Fixed a minor problem with images referenced by css not displaying. Cosmetic only
 
+= 1.0.2 =
+* Sorry can't remember what I changed here - I think it was small CSS changes and documentation changes
+
+= 1.0.3 =
+* This release introduces themes. I've only developed two so far. "light" is for light backgrounds, "dark" is for dark backgrounds.
+
 == Upgrade Notice ==
 
 = 1.0.1 =
 * If you want it to look slightly prettier (haha) then upgrade :)
+
+= 1.0.2 =
+* Don't worry about this one now... go 1.0.3!!
+
+= 1.0.3 =
+* We recommend an upgrade for sure!! We have introduced themes "light" and "dark". If you don't upgrade then "dark" is the default. Ie; polls will look best on a dark background. 
+Back at the DynaPoll site itself we have made quite a few changes but most significant to the WordPress community is that you can now create your boring old "traditional" polls
+with a finite number of responses. 
+
+Obviously we think you would be better off using a Dynamic "DynaPoll" style poll because that's what DynaPoll is all about. However we understand
+that if you are asking a question like "Which do you prefer - Ferrari or Datsun 120Y?" that it doesn't make sense to let people suggest answers. So for this you can create a 
+"traditional" poll. If your question was "Which is the best car of all time?" then we hope you will agree a DynaPoll is the way to go!
+
+Whichever type of poll you create back at DynaPoll the process for plugging it into your WordPress site remains the same (except for the theme option we just introduced in this release).

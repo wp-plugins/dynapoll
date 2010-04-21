@@ -4,7 +4,7 @@ Plugin Name: DynaPoll
 Plugin URI: http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
 Description: Grab a DynaPoll and embed it into your WP site
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBZ7EUWDDRS38&lc=AU&item_name=DynaPoll&item_number=DynaPoll_WP&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Version: 1.0.2
+Version: 1.0.3
 Author: Alasdair Boyd
 Author URI: http://www.dynapoll.net
 */
@@ -26,24 +26,6 @@ Author URI: http://www.dynapoll.net
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
-
-DYNAPOLL USAGE
-USAGE 1:
-Paste the following into any part of your site and it will output the poll as per the poll code.
-<?php
-	$poll_code = 'rnACCLw2ccTwyOG9e2htY';
-	echo dynapoll_get_poll($poll_code);
-?>
-
-USAGE 2:
-Paste the following into your content (ie; within a blog post or page content) and it will be replaced with
-the poll which corresponds to the poll code.
-
-[dynapoll: rnACCLw2ccTwyOG9e2htY]
-
- */
-
 function dynapoll_writeCSS() {
 	$x = WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__));
 	echo ( '<link rel="stylesheet" type="text/css" href="'. $x . 'dynapoll_css.css">' . "\r\n" );
@@ -62,7 +44,7 @@ add_action('wp_head', 'dynapoll_writeJS');
 
 require_once(dirname(__FILE__)."/dynapoll_rpc.php");
 
-function dynapoll_get_poll($poll_code)
+function dynapoll_get_poll($poll_code, $theme = 'dark')
 {
 	$user_ip = $_SERVER["REMOTE_ADDR"];
 
@@ -96,6 +78,13 @@ function dynapoll_get_poll($poll_code)
 					  /* do nothing - therefore load content */
 					}
 
+	// replace the div.dynapoll_poll string with div.dynapoll_poll_$theme
+	// check for valid theme values - set 'dark' as the default theme
+	$theme = strtolower($theme);
+	$theme = ($theme == 'dark' || $theme == 'light') ? $theme : 'dark';
+
+	$returned_html = str_replace('dynapoll_poll', 'dynapoll_poll_' . $theme, $returned_html);
+
 	return $returned_html;
 }
 
@@ -113,9 +102,13 @@ function filter_dynapoll_tag($content) {
 	    $params = str_replace("[dynapoll:","",$tag);
 	    $params = str_replace("]","",$params);
 	    $params = rtrim(ltrim($params));
-	    $params = explode("#",$params);
+	    $params = explode(",",$params);
 
-	    $content = str_replace($tag, dynapoll_get_poll($params[0]), $content);
+		foreach ($params as &$param) {
+			$param = trim($param);
+		}
+
+	    $content = str_replace($tag, dynapoll_get_poll($params[0], $params[1]), $content);
         }
     }
 
