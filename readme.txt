@@ -115,6 +115,9 @@ No screenshots but check out the demo video here: http://www.youtube.com/watch?v
 = 1.0.3 =
 * This release introduces themes. I've only developed two so far. "light" is for light backgrounds, "dark" is for dark backgrounds.
 
+= 1.0.4 =
+* Improved some of the CSS for the poll formatting. Also added a new feature to be able to specify a user and have a random poll from that user appear on each page refresh.
+
 == Upgrade Notice ==
 
 = 1.0.1 =
