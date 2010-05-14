@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBZ7E
 Tags: poll, survey
 Requires at least: 2.9
 Tested up to: 2.9
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 The DynaPoll plugin enables you to embed your DynaPoll polls into your WordPress site. Create a poll at http://www.dynapoll.net. 
 
@@ -24,7 +24,7 @@ Full instructions found at: http://www.dynapoll.net/survey/dynapoll_wordpress_pl
 For full detailed instructions and the usage demonstration video please check http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
 
 It's really easy to use the plugin. Before you can though you need to know the Poll Code for the poll you wish to display. You can grab your poll code from the Vote URL of the poll. 
-Whereever there is a link to the poll on this DynaPoll, whether it is in your My Polls page, in the Poll Browser or anywhere else, you can see the URL for the poll by either clicking on the question or 
+Whereever there is a link to the poll on this DynaPoll, whether it is in your My DynaPoll page, in the Poll Browser or anywhere else, you can see the URL for the poll by either clicking on the question or 
 right clicking on the question and choosing the option to "Copy Link Address". The code is the last parameter of the vote URL which looks like this:
 
 http://www.dynapoll.net/survey/vote/1gQXDBnMx3CDppWbaLDH4
@@ -59,6 +59,37 @@ your sidebar and paste the following code into the content of the Widget:
       $poll_code = '1gQXDBnMx3CDppWbaLDH4';
       $theme = 'light';
       echo dynapoll_get_poll($poll_code, $theme);
+?>`
+
+**NEW FEATURES**
+Using very similar methods to above you can also now use a different call to grab a random poll that you have created back at DynaPoll.
+For this you will need to know your User Code. The User code will be shown on your "My DynaPoll" page (right hand side bottom of the user menu - for now!).
+
+It's extremely similar to the above but to be clear this is how it's done. For the below example the user code is "98QXDBnMGGCDpFFaLD89".
+
+In your Blog Posts or Page content put the following tag where you would like the random poll to appear:
+
+`[dynapoll_random: 98QXDBnMGGCDpFFaLD89, dark]`
+
+OR
+
+Anywhere in the WordPress Template put the following code:
+
+`<?php 
+     $user_code = '98QXDBnMGGCDpFFaLD89';
+     $theme = 'dark';
+     echo dynapoll_get_random_poll($user_code, $theme); 
+?>`
+
+OR
+
+If you want to use it in a Dynamic Sidebar with a Widget we recommend downloading the [PHP Code Widget by Otto](http://wordpress.org/extend/plugins/php-code-widget "PHP Code Widget by Otto"). Drag the PHP Code Widget into 
+your sidebar and paste the following code into the content of the Widget:
+
+`<?php
+     $user_code = '98QXDBnMGGCDpFFaLD89';
+     $theme = 'dark';
+     echo dynapoll_get_random_poll($user_code, $theme); 
 ?>`
 
 
@@ -102,3 +133,9 @@ that if you are asking a question like "Which do you prefer - Ferrari or Datsun 
 "traditional" poll. If your question was "Which is the best car of all time?" then we hope you will agree a DynaPoll is the way to go!
 
 Whichever type of poll you create back at DynaPoll the process for plugging it into your WordPress site remains the same (except for the theme option we just introduced in this release).
+
+= 1.0.4 =
+* We had to make some changes to the HTML structure and the CSS to improve the look of the poll. We are already pushing through the changes to your polls with your current version
+but with the overhead of extra inline CSS. It is recommended to upgrade the plugin which will remove this inline CSS.
+* We didn't want to do a new release just for the above so we have also added the new feature for displaying a random poll for a particular user code. Check out the instructions for more details. You 
+can now have a different poll appear each time the page is refreshed (if you have more than one poll of course!).

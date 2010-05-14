@@ -297,6 +297,34 @@ div.dynapoll_poll_light span.dynapoll_remote_poll_link {
 
 /***** SHARED CSS ACROSS ALL STYLES *****/
 
+/* THE FOLLOWING ARE BEING SENT IN THE VIEW IF THE PLUGIN VERSION BEING USED IS LESS THAN 1.0.4 OR NOT SPECIFIED! */
+div.survey_choices label.choice {
+	display:block;
+	margin:-13px 0 2px 23px;
+	padding:0px;
+	width:88%;
+	float:left;
+	margin-right:0.5em;
+	text-align:left;
+}
+
+div.survey_choices span.survey_choice {
+	margin-bottom:3px;
+}
+
+div.survey_choices input.radio {
+	display:block;
+	margin:4px 0 0 4px;
+	padding:0;
+	width:13px;
+}
+
+div.clearer {
+	clear:both;
+}
+
+/************************************************************************/
+
 span.question_prompt {
 	font-weight: bold;
 	font-size: 1.1em;

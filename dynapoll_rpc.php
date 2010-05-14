@@ -32,7 +32,7 @@ function send_rpc_request($f)
 		else
 		{
 			//$result = htmlspecialchars($r->faultCode());
-			$result = htmlspecialchars($r->faultString()) . '(' . htmlspecialchars($r->faultCode()) . ')';
+			$result = htmlspecialchars($r->faultString()); // . '(' . htmlspecialchars($r->faultCode()) . ')';
 		}
 		return $result;
 	}

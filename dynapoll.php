@@ -4,7 +4,7 @@ Plugin Name: DynaPoll
 Plugin URI: http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
 Description: Grab a DynaPoll and embed it into your WP site
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBZ7EUWDDRS38&lc=AU&item_name=DynaPoll&item_number=DynaPoll_WP&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Version: 1.0.3
+Version: 1.0.4
 Author: Alasdair Boyd
 Author URI: http://www.dynapoll.net
 */
@@ -43,13 +43,65 @@ add_action('wp_head', wp_enqueue_script('jquery'));
 add_action('wp_head', 'dynapoll_writeJS');
 
 require_once(dirname(__FILE__)."/dynapoll_rpc.php");
+$site = $_SERVER["SERVER_NAME"];
 
 function dynapoll_get_poll($poll_code, $theme = 'dark')
 {
 	$user_ip = $_SERVER["REMOTE_ADDR"];
 
 	$f=new xmlrpcmsg('get_poll', array(new xmlrpcval($poll_code, "string"),
-									new xmlrpcval($user_ip, "string")));
+					new xmlrpcval($user_ip, "string"),
+                                        new xmlrpcval('1.0.4', "string"),
+                                        new xmlrpcval($site, "string")));
+
+
+	$returned_html = send_rpc_request($f);
+
+	switch(trim($returned_html))
+					{
+					case '900':
+						$returned_html = "IP Address has been implicated in a previous SPAM answer suggestion.";
+						return false;
+					  break;
+					case '901':
+						$returned_html = "Spam question was not answered correctly.";
+						return false;
+					  break;
+					case '902':
+						$returned_html = "Poll not found.";
+						return false;
+					  break;
+					case '903':
+						$returned_html = "Poll code was not sent.";
+						return false;
+					  break;
+					case '904':
+						$returned_html = "IP Address has logged a vote within the last 24 hours.";
+						return false;
+					  break;
+					default:
+					  /* do nothing - therefore load content */
+					}
+
+	// replace the div.dynapoll_poll string with div.dynapoll_poll_$theme
+	// check for valid theme values - set 'dark' as the default theme
+	$theme = strtolower($theme);
+	$theme = ($theme == 'dark' || $theme == 'light') ? $theme : 'dark';
+
+	$returned_html = str_replace('dynapoll_poll', 'dynapoll_poll_' . $theme, $returned_html);
+
+	return $returned_html;
+}
+
+function dynapoll_get_random_poll($user_code, $theme = 'dark')
+{
+	$user_ip = $_SERVER["REMOTE_ADDR"];
+
+	$f=new xmlrpcmsg('get_poll_random', array(new xmlrpcval($user_code, "string"),
+					new xmlrpcval($user_ip, "string"),
+                                        new xmlrpcval('1.0.4', "string"),
+                                        new xmlrpcval($site, "string")));
+
 	$returned_html = send_rpc_request($f);
 
 	switch(trim($returned_html))
@@ -115,5 +167,33 @@ function filter_dynapoll_tag($content) {
     return $content;
 }
 
+function filter_dynapoll_random($content) {
+
+    while (($start = strpos($content, "[dynapoll_random:")) !== false) {
+
+        $end = $start + strpos(substr($content, $start), "]") - 1;
+
+        if (!$end) {
+            $content = substr($content, 0, $start + 17)."]".substr($content, $start + 18);
+        } else {
+            $tag = substr($content, $start, $end - $start + 2);
+
+	    $params = str_replace("[dynapoll_random:","",$tag);
+	    $params = str_replace("]","",$params);
+	    $params = rtrim(ltrim($params));
+	    $params = explode(",",$params);
+
+		foreach ($params as &$param) {
+			$param = trim($param);
+		}
+
+	    $content = str_replace($tag, dynapoll_get_random_poll($params[0], $params[1]), $content);
+        }
+    }
+
+    return $content;
+}
+
 add_filter('the_content', 'filter_dynapoll_tag');
+add_filter('the_content', 'filter_dynapoll_random');
 ?>
