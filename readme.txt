@@ -18,10 +18,10 @@ It's extremely easy to install and even easier to use this plugin.You can check 
 
 http://www.youtube.com/watch?v=Kp707w1B4Zg
 
-Full instructions found at: http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
+Full instructions found at: http://www.dynapoll.net/about/dynapoll_wordpress_plugin
 == Installation ==
 
-For full detailed instructions and the usage demonstration video please check http://www.dynapoll.net/survey/dynapoll_wordpress_plugin
+For full detailed instructions and the usage demonstration video please check http://www.dynapoll.net/about/dynapoll_wordpress_plugin
 
 It's really easy to use the plugin. Before you can though you need to know the Poll Code for the poll you wish to display. You can grab your poll code from the Vote URL of the poll. 
 Whereever there is a link to the poll on this DynaPoll, whether it is in your My DynaPoll page, in the Poll Browser or anywhere else, you can see the URL for the poll by either clicking on the question or 
